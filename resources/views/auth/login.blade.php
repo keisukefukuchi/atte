@@ -19,7 +19,7 @@
             </div>
 
             <p class="login-except">アカウントをお持ちでない方はこちらから</p>
-            <a href="">会員登録</a>
+            <a href="/register" class="register-btn">会員登録</a>
         </div>
     </div>
 @endsection

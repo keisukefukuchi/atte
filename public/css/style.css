@@ -8,7 +8,7 @@ body {
 }
 /* header */
 header {
-    height: 10%;
+    height: 8%;
     background-color: #ffffff;
     position: relative;
 }
@@ -19,11 +19,11 @@ header {
     -webkit-transform: translateY(-50%);
     font-weight: bold;
     font-size: 32px;
-    padding-left: 100px;
+    padding-left: 50px;
 }
 /* main */
 main {
-    height: 85%;
+    height: 87%;
 }
 /* login */
 .login-container {
@@ -66,6 +66,11 @@ main {
 }
 .login-except {
     opacity: 0.6;
+    padding-bottom: 10px;
+}
+.register-btn {
+    text-decoration: none;
+    color: #3333ff;
 }
 /* footer */
 footer {
