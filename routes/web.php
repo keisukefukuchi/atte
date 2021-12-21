@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,5 +16,6 @@ use App\Http\Controllers\AttendanceController;
 */
 
 Route::get('/', [AttendanceController::class,'getIndex'])->middleware(['auth']);
+
 
 require __DIR__.'/auth.php';
