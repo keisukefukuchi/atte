@@ -7,12 +7,19 @@
         <div class="login-wrapper">
             <h1 class="login-title">ログイン</h1>
             <div class="login-form">
-                <form action="" method="post">
+                <form action="/login" method="post">
+                    @csrf
                     <div class="email login-input">
-                        <input type="email" placeholder="メールアドレス" required>
+                        <input type="email" name="email" placeholder="メールアドレス" required value="{{ old('email') }}">
+                        @error('email')
+                            <p>{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="password login-input">
-                        <input type="password" placeholder="パスワード" required>
+                        <input type="password" name="password" placeholder="パスワード" required value="{{ old('password') }}">
+                        @error('password')
+                            <p>{{ $message }}</p>
+                        @enderror
                     </div>
                     <button type="submit" class="button">ログイン</button>
                 </form>
