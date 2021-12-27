@@ -21,7 +21,16 @@
     @endguest
     @auth
         <header>
-            <h1 class="header-auth-title">Atte</h1>
+            <div class="header-right">
+                <h1 class="header-auth-title">Atte</h1>
+            </div>
+            <div class="header-left">
+                <nav class="nav">
+                    <ul class="nav-lists">
+                        <li class="nav-list"><a href="/logout">ログアウト</a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
     @endauth
     <main>

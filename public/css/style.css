@@ -21,6 +21,15 @@ header {
     font-size: 32px;
     padding-left: 50px;
 }
+.header-auth-title {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 32px;
+    padding-left: 50px;
+}
 /* main */
 main {
     height: 87%;
