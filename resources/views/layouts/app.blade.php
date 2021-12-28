@@ -15,18 +15,20 @@
 
 <body>
     @guest
-        <header>
+        <header class="guest">
             <h1 class="header-guest-title">Atte</h1>
         </header>
     @endguest
     @auth
-        <header>
+        <header class="auth">
             <div class="header-right">
                 <h1 class="header-auth-title">Atte</h1>
             </div>
             <div class="header-left">
                 <nav class="nav">
                     <ul class="nav-lists">
+                        <li class="nav-list"><a href="/">ホーム</a></li>
+                        <li class="nav-list"><a href="/attendance">日付一覧</a></li>
                         <li class="nav-list"><a href="/logout">ログアウト</a></li>
                     </ul>
                 </nav>
