@@ -16,18 +16,26 @@
     @endif
     <div class="container">
         <div class="wrapper">
-            <h1 class="login-user">{{ $user->name }}さんお疲れ様です！</h1>
+            <h1 class="login-user">{{ $user->name }}さんお疲れ様です！<span></span></h1>
             <div class="work-wrapper">
                 <div class="attendance">
                     <section class="attendance-start">
-                        <h1 class="work-title">
-                            <a href="" class="work-btn">勤務開始</a>
-                        </h1>
+                        @if (!isset($is_attendance_start))
+                            <h1 class="work-title">
+                                <a href="/attendance/start" class="work-btn">勤務開始</a>
+                            </h1>
+                        @else
+                            <p class="work-btn inActive">勤務開始</p>
+                        @endif
                     </section>
                     <section class="attendance-end">
+                        @if (!isset($is_attendance_end))
                         <h1 class="work-title">
-                            <a href="" class="work-btn">勤務終了</a>
+                            <a href="/attendance/end" class="work-btn">勤務終了</a>
                         </h1>
+                        @else
+                        <p class="work-btn inActive">勤務終了</p>
+                        @endif
                     </section>
                 </div>
                 <div class="rest">

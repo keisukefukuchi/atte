@@ -9,10 +9,12 @@ class Attendance extends Model
 {
     use HasFactory;
     protected $guarded = array('id');
-    public function user(){ //追記
+    protected $fillable = ['user_id','date','start_time','end_time'];
+
+    public function user(){
         return $this->belongsTo('App\Models\User');
     }
-    public function rest(){ //追記
+    public function rest(){
         return $this->hasMany('App\Models\rest');
     }
 }
