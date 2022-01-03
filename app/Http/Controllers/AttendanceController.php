@@ -20,19 +20,19 @@ class AttendanceController extends Controller
 
         $attendance = Attendance::where('user_id', $id)->where('date', $date)->first();
 
-        $rest = Rest::where('attendance_id',$id)->get();
+        $rest = Rest::where('attendance_id', $id)->get();
         $rest = $rest->whereNull("end_time")->first();
 
         if (empty($attendance)) {
-            return view('index',['user' => $user]);
+            return view('index', ['user' => $user]);
         }
-        if($attendance->end_time) {
+        if ($attendance->end_time) {
             $param = [
                 "is_attendance_end" => true,
                 "is_attendance_start" => true,
                 'user' => $user
             ];
-            return view('index',$param);
+            return view('index', $param);
         }
         if ($attendance->start_time) {
             if (isset($rest)) {
@@ -41,18 +41,19 @@ class AttendanceController extends Controller
                     "is_attendance_start" => true,
                     'user' => $user
                 ];
-                return view('index',$param);
-            }else {
+                return view('index', $param);
+            } else {
                 $param = [
                     "is_rest" => false,
                     "is_attendance_start" => true,
                     'user' => $user
                 ];
-                return view('index',$param);
+                return view('index', $param);
             }
         }
     }
-    public function startAttendance() {
+    public function startAttendance()
+    {
         $user = Auth::id();
         $dt = new Carbon();
         $date = $dt->toDateString();
@@ -65,7 +66,8 @@ class AttendanceController extends Controller
         Attendance::create($param);
         return redirect('/');
     }
-    public function endAttendance() {
+    public function endAttendance()
+    {
         $user = Auth::id();
         $dt = new Carbon();
         $date = $dt->toDateString();
@@ -73,11 +75,12 @@ class AttendanceController extends Controller
         Attendance::where('user_id', $user)->where('date', $date)->update(['end_time' => $time]);
         return redirect('/');
     }
-    public function getAttendance(int $num) {
+    public function getAttendance(int $num)
+    {
         $dt = new Carbon();
-        if($num == 0) {
+        if ($num == 0) {
             $date = $dt;
-        }elseif ($num > 0) {
+        } elseif ($num > 0) {
             $date = $dt->addDays($num);
         } else {
             $date = $dt->subDays(-$num);
@@ -91,27 +94,41 @@ class AttendanceController extends Controller
             foreach ($rests as $rest) {
                 $rest_start_time = strtotime($rest->start_time);
                 $rest_end_time = strtotime($rest->end_time);
-                if($rest_end_time == false) {
+                $now = Carbon::now();
+                $now = strtotime($now);
+                $tomorrow = Carbon::tomorrow();
+                $tomorrow = strtotime($tomorrow);
+                if ($tomorrow - $now == 0) {
+                    $rest_now = $now - 1;
+                    $diff_rest_seconds = $rest_now - $rest_start_time;
+                }elseif ($rest_end_time == false) {
                     $rest_now = Carbon::now();
                     $rest_now = strtotime($rest_now);
                     $diff_rest_seconds = $rest_now - $rest_start_time;
-                }else {
+                } else {
                     $diff_rest_seconds =  $rest_end_time - $rest_start_time;
                 }
                 $rest_sum = $rest_sum + $diff_rest_seconds;
             }
             $work_start_time = strtotime($attendance->start_time);
             $work_end_time = strtotime($attendance->end_time);
-            if($work_end_time == false) {
+            $now = Carbon::now();
+            $now = strtotime($now);
+            $tomorrow = Carbon::tomorrow();
+            $tomorrow = strtotime($tomorrow);
+            if ($tomorrow - $now == 0) {
+                $work_now = $now - 1;
+                $diff_work_seconds = $work_now - $work_start_time;
+            }elseif ($work_end_time == false) {
                 $work_now = Carbon::now();
                 $work_now = strtotime($work_now);
                 $diff_work_seconds = $work_now - $work_start_time;
-            }else {
+            } else {
                 $diff_work_seconds = $work_end_time - $work_start_time;
             }
             $diff_work = $diff_work_seconds - $rest_sum;
 
-            $res_hours = floor($rest_sum /3600);
+            $res_hours = floor($rest_sum / 3600);
             $res_minutes = floor(($rest_sum / 60) % 60);
             $res_seconds = $rest_sum % 60;
 
@@ -126,6 +143,6 @@ class AttendanceController extends Controller
             $attendances[$index]->work_time = $work_time->toTimeString();
         }
 
-        return view('attendance' ,compact("attendances","num", "page_date"));
+        return view('attendance', compact("attendances", "num", "page_date"));
     }
 }
