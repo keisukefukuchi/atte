@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use App\Models\Rest;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -24,6 +22,7 @@ class AttendanceController extends Controller
 
         $rest = Rest::where('attendance_id',$id)->get();
         $rest = $rest->whereNull("end_time")->first();
+
         if (empty($attendance)) {
             return view('index',['user' => $user]);
         }
@@ -46,8 +45,6 @@ class AttendanceController extends Controller
             }else {
                 $param = [
                     "is_rest" => false,
-                    "is_rest_start" => false,
-                    "is_rest_ent" => false,
                     "is_attendance_start" => true,
                     'user' => $user
                 ];
@@ -94,20 +91,25 @@ class AttendanceController extends Controller
             foreach ($rests as $rest) {
                 $rest_start_time = strtotime($rest->start_time);
                 $rest_end_time = strtotime($rest->end_time);
-                $diff_rest_seconds =  $rest_end_time - $rest_start_time;
+                if($rest_end_time == false) {
+                    $rest_now = Carbon::now();
+                    $rest_now = strtotime($rest_now);
+                    $diff_rest_seconds = $rest_now - $rest_start_time;
+                }else {
+                    $diff_rest_seconds =  $rest_end_time - $rest_start_time;
+                }
                 $rest_sum = $rest_sum + $diff_rest_seconds;
             }
             $work_start_time = strtotime($attendance->start_time);
             $work_end_time = strtotime($attendance->end_time);
             if($work_end_time == false) {
-                $now = Carbon::now();
-                $now = strtotime($now);
-                $diff_work_seconds = $now - $work_start_time;
+                $work_now = Carbon::now();
+                $work_now = strtotime($work_now);
+                $diff_work_seconds = $work_now - $work_start_time;
             }else {
                 $diff_work_seconds = $work_end_time - $work_start_time;
             }
             $diff_work = $diff_work_seconds - $rest_sum;
-
 
             $res_hours = floor($rest_sum /3600);
             $res_minutes = floor(($rest_sum / 60) % 60);

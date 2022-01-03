@@ -213,6 +213,24 @@ main {
     font-weight: bold;
 }
 /* pagenation */
+.attendance-day {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin: 30px 0 40px 0;
+    font-size: 18px;
+}
+.attendance-date {
+    display: inline;
+    padding: 0 20px;
+}
+.arrow {
+    border: 1px solid #000000;
+    padding: 10px 10px 12px 10px;
+    border-radius: 50px;
+    background-color: #4b90f6;
+    color: #ffffff;
+}
 .attendance-table {
     width: 100%;
     margin: 0 auto;
@@ -235,16 +253,54 @@ main {
     width: 20%;
     padding: 20px 0;
 }
-
 .attendance-contents {
     width: 100%;
     font-size: 20px;
     border-bottom: 1px solid #000000;
 }
+.attendance-contents:last-child {
+    border-bottom: none;
+}
 .attendance-contents td {
     width: 20%;
     padding: 20px 0;
 }
+.paginationWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 38px;
+    margin-bottom: 40px;
+}
+
+.paginationWrap ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.paginationWrap ul.pagination li {
+  display: inline;
+}
+
+.paginationWrap ul.pagination li a {
+    color: #2f3859;
+    text-decoration: none;
+    padding: 8px 14px;
+}
+
+.paginationWrap ul.pagination li a.active {
+    background-color: #4b90f6;
+    color: white;
+    border-radius: 40px;
+    margin: 0 15px;
+}
+
+.paginationWrap ul.pagination li a:hover:not(.active) {
+    background-color: #e1e7f0;
+    border-radius: 40px;
+}
+
+
 /* footer */
 footer {
     height: 5%;
