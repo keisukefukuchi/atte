@@ -30,24 +30,40 @@
                     </section>
                     <section class="attendance-end">
                         @if (!isset($is_attendance_end))
-                        <h1 class="work-title">
-                            <a href="/attendance/end" class="work-btn">勤務終了</a>
-                        </h1>
+                            <h1 class="work-title">
+                                <a href="/attendance/end" class="work-btn">勤務終了</a>
+                            </h1>
                         @else
-                        <p class="work-btn inActive">勤務終了</p>
+                            <p class="work-btn inActive">勤務終了</p>
                         @endif
                     </section>
                 </div>
                 <div class="rest">
                     <section class="rest-start">
-                        <h1 class="work-title">
-                            <a href="" class="work-btn">休憩開始</a>
-                        </h1>
+                        @if (isset($is_rest))
+                            @if (!$is_rest)
+                                <h1 class="work-title">
+                                    <a href="/break/start" class="work-btn">休憩開始</a>
+                                </h1>
+                            @else
+                                <p class="work-btn inActive">休憩開始</p>
+                            @endif
+                        @else
+                            <p class="work-btn inActive">休憩終了</p>
+                        @endif
                     </section>
                     <section class="rest-end">
-                        <h1 class="work-title">
-                            <a href="" class="work-btn">休憩終了</a>
-                        </h1>
+                        @if (isset($is_rest))
+                            @if ($is_rest)
+                                <h1 class="work-title">
+                                    <a href="/break/end" class="work-btn">休憩終了</a>
+                                </h1>
+                            @else
+                                <p class="work-btn inActive">休憩終了</p>
+                            @endif
+                        @else
+                            <p class="work-btn inActive">休憩終了</p>
+                        @endif
                     </section>
                 </div>
             </div>
