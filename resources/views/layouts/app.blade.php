@@ -28,7 +28,7 @@
                 <nav class="nav">
                     <ul class="nav-lists">
                         <li class="nav-list"><a href="/">ホーム</a></li>
-                        <li class="nav-list"><a href="/attendance">日付一覧</a></li>
+                        <li class="nav-list"><a href="/attendance/0">日付一覧</a></li>
                         <li class="nav-list"><a href="/logout">ログアウト</a></li>
                     </ul>
                 </nav>

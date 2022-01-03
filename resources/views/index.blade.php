@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '')
+@section('title', '勤怠管理アプリ')
 
 @section('content')
     @if (session('sucess'))
@@ -54,7 +54,7 @@
                     </section>
                     <section class="rest-end">
                         @if (isset($is_rest))
-                            @if ($is_rest)
+                            @if (!$is_rest)
                                 <h1 class="work-title">
                                     <a href="/break/end" class="work-btn">休憩終了</a>
                                 </h1>

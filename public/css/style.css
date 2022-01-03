@@ -212,6 +212,39 @@ main {
     opacity: 0.3;
     font-weight: bold;
 }
+/* pagenation */
+.attendance-table {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.attendance-table table {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+}
+.attendance-title {
+    width: 100%;
+    font-weight: normal;
+    font-size: 20px;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+.attendance-title th {
+    width: 20%;
+    padding: 20px 0;
+}
+
+.attendance-contents {
+    width: 100%;
+    font-size: 20px;
+    border-bottom: 1px solid #000000;
+}
+.attendance-contents td {
+    width: 20%;
+    padding: 20px 0;
+}
 /* footer */
 footer {
     height: 5%;
